@@ -30,7 +30,7 @@ int upgradingProgress = 0;
 const int I2C_DISPLAY_ADDRESS = 0x3c;
 const int SDA_PIN = D2;
 const int SDC_PIN = D1;
-const int OLED_BRIGHTNESS = 128;
+const int OLED_BRIGHTNESS = 96;
 SH1106Wire display(I2C_DISPLAY_ADDRESS, SDA_PIN, SDC_PIN);
 OLEDDisplayUi ui(&display);
 
@@ -50,7 +50,6 @@ void setupDisplay() {
   display.display();
 
   display.setTextAlignment(TEXT_ALIGN_CENTER);
-  display.setContrast(OLED_BRIGHTNESS);
 
   display.clear();
   display.setFont(ArialMT_Plain_16);
@@ -66,8 +65,6 @@ void setupOTA() {
     upgrading = true;
     upgradingProgress = 0;
     Serial.println("Uploading firmware...");
-    display.displayOn();
-    display.setContrast(255);
     drawProgress(&display, 0, "Uploading firmware...");
   });
   ArduinoOTA.onProgress([](unsigned int progress, unsigned int total) {
@@ -182,7 +179,7 @@ void drawMain(OLEDDisplay *display, OLEDDisplayUiState *state, int16_t x, int16_
 void drawOverlay(OLEDDisplay *display, OLEDDisplayUiState *state) {
   display->setColor(WHITE);
   display->setFont(ArialMT_Plain_10);
-  String time = timeClient.getFormattedTime().substring(0, 8);
+  String time = timeClient.getFormattedTime().substring(0, 5);
   display->setTextAlignment(TEXT_ALIGN_LEFT);
   display->drawString(0, 54, time);
   display->setTextAlignment(TEXT_ALIGN_RIGHT);
@@ -204,6 +201,7 @@ void setup() {
   setupTime();
 
   display.flipScreenVertically();
+  display.setContrast(OLED_BRIGHTNESS);
 }
 
 void loop() {
