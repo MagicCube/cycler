@@ -30,7 +30,7 @@ module.exports = {
     rules: [
       {
         test: /\.jsx?$/,
-        use: ['babel-loader?presets[]=es2015,presets[]=stage-0,presets[]=react'],
+        use: ['babel-loader?presets[]=es2015,presets[]=stage-0,presets[]=react&plugins[]=transform-decorators-legacy'],
         exclude: /node_modules/
       },
       {

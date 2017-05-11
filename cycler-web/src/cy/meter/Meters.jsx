@@ -1,6 +1,9 @@
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import React from 'react';
 
-import { now, reset } from '../api';
+import actionCreators from '../action/creators';
+
 import DistanceMeter from './DistanceMeter';
 import SpeedMeter from './SpeedMeter';
 import TimeMeter from './TimeMeter';
@@ -8,52 +11,27 @@ import TimeMeter from './TimeMeter';
 import '../res/meters.less';
 
 
+@connect(
+  state => state.now,
+  dispatch => ({
+    actions: bindActionCreators(actionCreators, dispatch)
+  })
+)
 export default class Meters extends React.Component {
-  constructor(...args) {
-    super(...args);
-
-    this.state = { };
-  }
-
-  componentDidMount() {
-    this.poll();
-  }
-
-  async poll() {
-    try {
-      await this.updateData();
-    } catch (e) {
-
-    }
-
-    setTimeout(() => {
-      this.poll();
-    }, 2000);
-  }
-
-  async updateData() {
-    const data = await now();
-    this.setState(data);
-  }
-
-  reset() {
-    reset();
-  }
-
   render() {
     return (
-      <div className={this.state.state === 1 ? 'cy-meters running' : 'cy-meters'}>
+      <div className={this.props.state === 1 ? 'cy-meters running' : 'cy-meters'}>
         <section>
-          <DistanceMeter value={this.state.distance} />
+          <DistanceMeter value={this.props.distance} />
         </section>
         <section>
-          <SpeedMeter value={this.state.speed} averageValue={this.state.distance / (this.state.elapsed / 60 / 60)} />
+          <SpeedMeter value={this.props.speed} averageValue={this.props.distance / (this.props.elapsed / 60 / 60)} />
         </section>
         <section>
-          <TimeMeter value={this.state.elapsed} />
+          <TimeMeter value={this.props.elapsed} />
         </section>
         <section>
-          <button className="reset" onClick={() => this.reset()}>RESET</button>
+          <button className="reset" onClick={() => this.props.actions.reset()}>RESET</button>
         </section>
       </div>
     );

@@ -8,9 +8,9 @@
 using namespace std;
 
 
-const int CHECK_INTERVAL = 2000;
+const int CHECK_INTERVAL = 2500;
 const int RECORD_INTERVAL = 5000;
-const int MAX_RECORD_COUNT = 60 * 60 / 15;
+const int MAX_RECORD_COUNT = 30 * 60 / 5;
 
 
 class Meter {
