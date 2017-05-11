@@ -8,7 +8,7 @@
 using namespace std;
 
 
-const int CHECK_INTERVAL = 3000;
+const int CHECK_INTERVAL = 2000;
 const int RECORD_INTERVAL = 5000;
 const int MAX_RECORD_COUNT = 60 * 60 / 15;
 
@@ -27,7 +27,7 @@ public:
   String getFormatedSpeed();
   String getFormatedTantaneousSpeed();
   String getFormatedTime();
-  list<float>::iterator getSpeedRecords();
+  list<float> getSpeedRecords();
 
 private:
   int _cycles = 0;

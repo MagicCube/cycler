@@ -21,12 +21,13 @@ void drawMain(OLEDDisplay *display, OLEDDisplayUiState *state, int16_t x, int16_
 void drawOverlay(OLEDDisplay *display, OLEDDisplayUiState *state);
 
 // General settings
-const bool OFFLINE = true;
-const bool SIMULATING = true;
+// OFFLINE = false
+// SIMULATING = false;
+const bool OFFLINE = false;
+const bool SIMULATING = false;
 
 // States
 int sim_millis = 0;
-int last_zero_millis = 0;
 
 // Time Client
 const int UTC_OFFSET = 8;
@@ -170,7 +171,7 @@ void setupUI() {
 }
 
 void setupTime() {
-  drawProgress(&display, 10, "Updating time...");
+  drawProgress(&display, 33, "Updating time...");
   timeClient.updateTime();
 }
 
@@ -188,7 +189,7 @@ void drawProgress(OLEDDisplay *display, int percentage, String label) {
 void drawMain(OLEDDisplay *display, OLEDDisplayUiState *state, int16_t x, int16_t y) {
   display->setTextAlignment(TEXT_ALIGN_CENTER);
   display->setFont(ArialMT_Plain_16);
-  display->drawString(x + 64, y, stopWatch.getFormatedElapsed());
+  display->drawString(x + 64, y + 3, stopWatch.getFormatedElapsed());
 
   display->setFont(ArialMT_Plain_24);
   display->drawString(x + 64, y + 22, meter.getFormatedDistance());
@@ -203,8 +204,10 @@ void drawOverlay(OLEDDisplay *display, OLEDDisplayUiState *state) {
   display->setTextAlignment(TEXT_ALIGN_LEFT);
   display->drawString(0, 54, time);
   display->setTextAlignment(TEXT_ALIGN_RIGHT);
-  if (stopWatch.getState() != StopWatch::PAUSED) {
-    display->drawString(127, 54, meter.getFormatedSpeed());
+  if (stopWatch.isRunning()) {
+    display->drawString(127, 54, meter.getFormatedTantaneousSpeed());
+  } else if (stopWatch.getState() == StopWatch::STOPPED) {
+    display->drawString(127, 54, "READY");
   } else {
     display->drawString(127, 54, "PAUSED");
   }
@@ -212,13 +215,9 @@ void drawOverlay(OLEDDisplay *display, OLEDDisplayUiState *state) {
 }
 
 void checkPause() {
-  // Auto pause at 5 seconds after there's no actions detected
-  if (meter.getSpeed() == 0 && last_zero_millis == 0) {
-    last_zero_millis = millis();
-  } else {
-    last_zero_millis = 0;
-  }
-  if (last_zero_millis != 0 && millis() - last_zero_millis > 5000) {
+  if (!stopWatch.isRunning()) return;
+
+  if (meter.getSpeed() == 0) {
     stopWatch.pause();
   }
 }
@@ -235,7 +234,7 @@ void sensorInterrupt() {
     lastInterrupt = now;
   }
   meter.interrupt();
-  Serial.println(timeClient.getFormattedTime());
+  //Serial.println("Interrupt");
 }
 
 

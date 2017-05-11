@@ -29,6 +29,12 @@ void Meter::handle() {
 
 void Meter::reset() {
   this->_cycles = 0;
+  this->_lastCheckTime = 0;
+  this->_lastDistance = 0;
+  this->_lastRecordTime = 0;
+  this->_speed = 0;
+  this->_speedRecords.clear();
+  this->_tantaneousSpeed = 0;
 }
 
 void Meter::interrupt() {
@@ -63,7 +69,6 @@ String Meter::getFormatedTantaneousSpeed() {
   return String(this->getTantaneousSpeed()) + " km/h";
 }
 
-list<float>::iterator Meter::getSpeedRecords() {
-  list<float>::iterator it = this->_speedRecords.begin();
-  return it;
+list<float> Meter::getSpeedRecords() {
+  return this->_speedRecords;
 }

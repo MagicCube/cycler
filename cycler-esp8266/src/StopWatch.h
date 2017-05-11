@@ -6,7 +6,7 @@
 
 class StopWatch {
 public:
-  enum State { RUNNING, STOPPED, PAUSED };
+  enum State { STOPPED, RUNNING, PAUSED };
   void start();
   void pause();
   void reset();
