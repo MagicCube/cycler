@@ -12,13 +12,13 @@ void Meter::begin() {
 
 void Meter::handle() {
   int deltaTime = millis() - this->_lastCheckTime;
-  if (deltaTime > CHECK_INTERVAL) {
+  if (deltaTime >= CHECK_INTERVAL) {
     this->_tantaneousSpeed = (this->getDistance() - this->_lastDistance) / (deltaTime / 1000) * 60 * 60;
     this->_speed = this->_speedMA.process(this->_tantaneousSpeed);
     this->_lastDistance = this->getDistance();
     this->_lastCheckTime = millis();
   }
-  if (millis() - this->_lastRecordTime > RECORD_INTERVAL) {
+  if (millis() - this->_lastRecordTime >= RECORD_INTERVAL) {
     this->_speedRecords.push_back(this->_speed);
     while (this->_speedRecords.size() > MAX_RECORD_COUNT) {
       this->_speedRecords.pop_front();

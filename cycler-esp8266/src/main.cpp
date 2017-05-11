@@ -276,7 +276,7 @@ void loop() {
   }
 
   if (SIMULATING) {
-    if (millis() - sim_millis > 800 + random(500)) {
+    if (millis() - sim_millis >= 800 + random(500)) {
       sim_millis = millis();
       sensorInterrupt();
     }
@@ -287,8 +287,5 @@ void loop() {
   meter.handle();
   service.handle();
 
-  int remainingTimeBudget = ui.update();
-  if (remainingTimeBudget > 0) {
-    // delay(remainingTimeBudget);
-  }
+  ui.update();
 }
