@@ -11,13 +11,21 @@
 
 #include "fonts.h"
 #include "images.h"
-#include "meter.h"
+#include "Meter.h"
+#include "StopWatch.h"
 
 
 void drawProgress(OLEDDisplay *display, int percentage, String label);
 void drawMain(OLEDDisplay *display, OLEDDisplayUiState *state, int16_t x, int16_t y);
 void drawOverlay(OLEDDisplay *display, OLEDDisplayUiState *state);
 
+// General settings
+const bool OFFLINE = true;
+const bool SIMULATING = true;
+
+// States
+int sim_millis = 0;
+int last_zero_millis = 0;
 
 // Time Client
 const int UTC_OFFSET = 8;
@@ -26,6 +34,9 @@ TimeClient timeClient(UTC_OFFSET);
 // Meter
 const int SENSOR_PIN = D3;
 Meter meter;
+
+// StopWatch
+StopWatch stopWatch;
 
 // OTA Settings
 bool upgrading = false;
@@ -171,7 +182,7 @@ void drawProgress(OLEDDisplay *display, int percentage, String label) {
 void drawMain(OLEDDisplay *display, OLEDDisplayUiState *state, int16_t x, int16_t y) {
   display->setTextAlignment(TEXT_ALIGN_CENTER);
   display->setFont(ArialMT_Plain_16);
-  display->drawString(x + 64, y, meter.getFormatedTime());
+  display->drawString(x + 64, y, stopWatch.getFormatedElapsed());
 
   display->setFont(ArialMT_Plain_24);
   display->drawString(x + 64, y + 22, meter.getFormatedDistance());
@@ -186,12 +197,19 @@ void drawOverlay(OLEDDisplay *display, OLEDDisplayUiState *state) {
   display->setTextAlignment(TEXT_ALIGN_LEFT);
   display->drawString(0, 54, time);
   display->setTextAlignment(TEXT_ALIGN_RIGHT);
-  display->drawString(127, 54, meter.getFormatedSpeed());
+  if (stopWatch.getState() != StopWatch::PAUSED) {
+    display->drawString(127, 54, meter.getFormatedSpeed());
+  } else {
+    display->drawString(127, 54, "PAUSED");
+  }
   display->drawHorizontalLine(0, 53, 128);
 }
 
 int lastInterrupt = 0;
 void sensorInterrupt() {
+  if (!stopWatch.isRunning()) {
+    stopWatch.start();
+  }
   int now = millis();
   if (lastInterrupt == millis()) {
     return;
@@ -213,27 +231,52 @@ void setup() {
   Serial.println("cycler-esp8266 is now setting up...");
 
   setupDisplay();
-  setupWiFi();
-  setupOTA();
+  if (!OFFLINE) {
+    setupWiFi();
+    setupOTA();
+    setupTime();
+  }
   setupUI();
-  setupTime();
 
   display.flipScreenVertically();
   display.setContrast(OLED_BRIGHTNESS);
 
   meter.begin();
+
+  if (SIMULATING) {
+    sim_millis = millis();
+  }
 }
 
 void loop() {
-  ArduinoOTA.handle();
-  if (upgrading) {
-    return;
+  if (!OFFLINE) {
+    ArduinoOTA.handle();
+    if (upgrading) {
+      return;
+    }
+  }
+
+  if (SIMULATING) {
+    if (millis() - sim_millis > 300 + random(500)) {
+      sim_millis = millis();
+      sensorInterrupt();
+    }
+  }
+
+  // Auto pause at 5 seconds after there's no actions detected
+  if (meter.getSpeed() == 0 && last_zero_millis == 0) {
+    last_zero_millis = millis();
+  } else {
+    last_zero_millis = 0;
+  }
+  if (last_zero_millis != 0 && millis() - last_zero_millis > 5000) {
+    stopWatch.pause();
   }
 
   meter.handle();
 
   int remainingTimeBudget = ui.update();
   if (remainingTimeBudget > 0) {
-    //delay(remainingTimeBudget);
+    // delay(remainingTimeBudget);
   }
 }

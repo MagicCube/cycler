@@ -1,27 +1,42 @@
-#include "meter.h"
+#include "Meter.h"
 
+
+Meter::Meter() : _speedMA(5) {
+}
 
 void Meter::begin() {
   this->reset();
-}
-
-void Meter::reset() {
-  this->_cycles = 0;
+  this->_lastMillis = millis();
 }
 
 void Meter::handle() {
+  if (millis() - this->_lastMillis > CHECK_INTERVAL) {
+    this->_tantaneousSpeed = (this->getDistance() - this->_lastDistance) / (CHECK_INTERVAL / 1000) * 60 * 60;
+    this->_speed = this->_speedMA.process(this->_tantaneousSpeed);
+    this->_lastMillis = millis();
+    this->_lastDistance = this->getDistance();
+  }
+}
+
+
+void Meter::reset() {
+  this->_cycles = 0;
 }
 
 void Meter::interrupt() {
   this->_cycles++;
 }
 
-double Meter::getSpeed() {
-  return 0;
+float Meter::getSpeed() {
+  return this->_speed;
 }
 
-double Meter::getDistance() {
-  return this->_cycles * 2 / 1000;
+float Meter::getTantaneousSpeed() {
+  return this->_tantaneousSpeed;
+}
+
+float Meter::getDistance() {
+  return (float)this->_cycles * 2 / 1000;
 }
 
 String Meter::getFormatedDistance() {
@@ -34,4 +49,8 @@ String Meter::getFormatedTime() {
 
 String Meter::getFormatedSpeed() {
   return String(this->getSpeed()) + " km/h";
+}
+
+String Meter::getFormatedTantaneousSpeed() {
+  return String(this->getTantaneousSpeed()) + " km/h";
 }
