@@ -10,6 +10,7 @@
 
 
 #include "fonts.h"
+#include "HttpService.h"
 #include "images.h"
 #include "Meter.h"
 #include "StopWatch.h"
@@ -37,6 +38,9 @@ Meter meter;
 
 // StopWatch
 StopWatch stopWatch;
+
+// HTTP Service
+HttpService service(&meter, &stopWatch);
 
 // OTA Settings
 bool upgrading = false;
@@ -145,6 +149,8 @@ void setupWiFi() {
   }
   Serial.print("\nIP address: ");
   Serial.println(WiFi.localIP());
+
+  service.begin();
 }
 
 void setupUI() {
@@ -205,6 +211,18 @@ void drawOverlay(OLEDDisplay *display, OLEDDisplayUiState *state) {
   display->drawHorizontalLine(0, 53, 128);
 }
 
+void checkPause() {
+  // Auto pause at 5 seconds after there's no actions detected
+  if (meter.getSpeed() == 0 && last_zero_millis == 0) {
+    last_zero_millis = millis();
+  } else {
+    last_zero_millis = 0;
+  }
+  if (last_zero_millis != 0 && millis() - last_zero_millis > 5000) {
+    stopWatch.pause();
+  }
+}
+
 int lastInterrupt = 0;
 void sensorInterrupt() {
   if (!stopWatch.isRunning()) {
@@ -263,17 +281,10 @@ void loop() {
     }
   }
 
-  // Auto pause at 5 seconds after there's no actions detected
-  if (meter.getSpeed() == 0 && last_zero_millis == 0) {
-    last_zero_millis = millis();
-  } else {
-    last_zero_millis = 0;
-  }
-  if (last_zero_millis != 0 && millis() - last_zero_millis > 5000) {
-    stopWatch.pause();
-  }
+  checkPause();
 
   meter.handle();
+  service.handle();
 
   int remainingTimeBudget = ui.update();
   if (remainingTimeBudget > 0) {

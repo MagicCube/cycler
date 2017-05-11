@@ -2,19 +2,27 @@
 
 
 Meter::Meter() : _speedMA(5) {
+
 }
 
 void Meter::begin() {
   this->reset();
-  this->_lastMillis = millis();
+  this->_lastCheckTime = millis();
 }
 
 void Meter::handle() {
-  if (millis() - this->_lastMillis > CHECK_INTERVAL) {
+  if (millis() - this->_lastCheckTime > CHECK_INTERVAL) {
     this->_tantaneousSpeed = (this->getDistance() - this->_lastDistance) / (CHECK_INTERVAL / 1000) * 60 * 60;
     this->_speed = this->_speedMA.process(this->_tantaneousSpeed);
-    this->_lastMillis = millis();
     this->_lastDistance = this->getDistance();
+    this->_lastCheckTime = millis();
+  }
+  if (millis() - this->_lastRecordTime > RECORD_INTERVAL) {
+    this->_speedRecords.push_back(this->_speed);
+    while (this->_speedRecords.size() > MAX_RECORD_COUNT) {
+      this->_speedRecords.pop_front();
+    }
+    this->_lastRecordTime = millis();
   }
 }
 
@@ -53,4 +61,9 @@ String Meter::getFormatedSpeed() {
 
 String Meter::getFormatedTantaneousSpeed() {
   return String(this->getTantaneousSpeed()) + " km/h";
+}
+
+list<float>::iterator Meter::getSpeedRecords() {
+  list<float>::iterator it = this->_speedRecords.begin();
+  return it;
 }
