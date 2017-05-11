@@ -11,6 +11,7 @@
 
 #include "fonts.h"
 #include "images.h"
+#include "meter.h"
 
 
 void drawProgress(OLEDDisplay *display, int percentage, String label);
@@ -21,6 +22,10 @@ void drawOverlay(OLEDDisplay *display, OLEDDisplayUiState *state);
 // Time Client
 const int UTC_OFFSET = 8;
 TimeClient timeClient(UTC_OFFSET);
+
+// Meter
+const int SENSOR_PIN = D3;
+Meter meter;
 
 // OTA Settings
 bool upgrading = false;
@@ -164,14 +169,12 @@ void drawProgress(OLEDDisplay *display, int percentage, String label) {
 }
 
 void drawMain(OLEDDisplay *display, OLEDDisplayUiState *state, int16_t x, int16_t y) {
-  String time = "00:00";
   display->setTextAlignment(TEXT_ALIGN_CENTER);
   display->setFont(ArialMT_Plain_16);
-  display->drawString(x + 64, y, time);
+  display->drawString(x + 64, y, meter.getFormatedTime());
 
-  String distance = "15.50 km";
   display->setFont(ArialMT_Plain_24);
-  display->drawString(x + 64, y + 22, distance);
+  display->drawString(x + 64, y + 22, meter.getFormatedDistance());
 
   display->setTextAlignment(TEXT_ALIGN_LEFT);
 }
@@ -183,12 +186,27 @@ void drawOverlay(OLEDDisplay *display, OLEDDisplayUiState *state) {
   display->setTextAlignment(TEXT_ALIGN_LEFT);
   display->drawString(0, 54, time);
   display->setTextAlignment(TEXT_ALIGN_RIGHT);
-  display->drawString(127, 54, "27.4 km/h");
+  display->drawString(127, 54, meter.getFormatedSpeed());
   display->drawHorizontalLine(0, 53, 128);
+}
+
+int lastInterrupt = 0;
+void sensorInterrupt() {
+  int now = millis();
+  if (lastInterrupt == millis()) {
+    return;
+  } else {
+    lastInterrupt = now;
+  }
+  meter.interrupt();
+  Serial.println(timeClient.getFormattedTime());
 }
 
 
 void setup() {
+  pinMode(SENSOR_PIN, INPUT_PULLUP);
+  attachInterrupt(SENSOR_PIN, sensorInterrupt, FALLING);
+
   Serial.begin(115200);
   Serial.println();
   Serial.println();
@@ -202,6 +220,8 @@ void setup() {
 
   display.flipScreenVertically();
   display.setContrast(OLED_BRIGHTNESS);
+
+  meter.begin();
 }
 
 void loop() {
@@ -210,8 +230,10 @@ void loop() {
     return;
   }
 
+  meter.handle();
+
   int remainingTimeBudget = ui.update();
   if (remainingTimeBudget > 0) {
-    delay(remainingTimeBudget);
+    //delay(remainingTimeBudget);
   }
 }
