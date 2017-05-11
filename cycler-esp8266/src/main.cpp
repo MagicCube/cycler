@@ -24,7 +24,7 @@ void drawOverlay(OLEDDisplay *display, OLEDDisplayUiState *state);
 // OFFLINE = false
 // SIMULATING = false;
 const bool OFFLINE = false;
-const bool SIMULATING = false;
+const bool SIMULATING = true;
 
 // States
 int sim_millis = 0;
@@ -223,6 +223,7 @@ void checkPause() {
 }
 
 int lastInterrupt = 0;
+int interruptTimes = 0;
 void sensorInterrupt() {
   if (!stopWatch.isRunning()) {
     stopWatch.start();
@@ -234,7 +235,8 @@ void sensorInterrupt() {
     lastInterrupt = now;
   }
   meter.interrupt();
-  //Serial.println("Interrupt");
+  Serial.print("Interrupt #");
+  Serial.println(++interruptTimes);
 }
 
 

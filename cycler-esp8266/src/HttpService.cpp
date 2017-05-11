@@ -19,6 +19,7 @@ void HttpService::begin() {
     json["state"] = (int)this->_stopWatch->getState();
     String jsonString;
     json.printTo(jsonString);
+
     this->_server.send(200, "application/json", jsonString);
   });
 
@@ -30,6 +31,7 @@ void HttpService::begin() {
     }
     String jsonString;
     json.printTo(jsonString);
+
     this->_server.send(200, "application/json", jsonString);
   });
 
