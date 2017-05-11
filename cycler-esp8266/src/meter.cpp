@@ -11,8 +11,9 @@ void Meter::begin() {
 }
 
 void Meter::handle() {
-  if (millis() - this->_lastCheckTime > CHECK_INTERVAL) {
-    this->_tantaneousSpeed = (this->getDistance() - this->_lastDistance) / (CHECK_INTERVAL / 1000) * 60 * 60;
+  int deltaTime = millis() - this->_lastCheckTime;
+  if (deltaTime > CHECK_INTERVAL) {
+    this->_tantaneousSpeed = (this->getDistance() - this->_lastDistance) / (deltaTime / 1000) * 60 * 60;
     this->_speed = this->_speedMA.process(this->_tantaneousSpeed);
     this->_lastDistance = this->getDistance();
     this->_lastCheckTime = millis();
@@ -50,7 +51,7 @@ float Meter::getTantaneousSpeed() {
 }
 
 float Meter::getDistance() {
-  return (float)this->_cycles * 2 / 1000;
+  return (float)this->_cycles * 4 / 1000;
 }
 
 String Meter::getFormatedDistance() {

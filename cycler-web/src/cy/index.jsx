@@ -9,5 +9,5 @@ import './res/index.less';
 
 render(
   <App />,
-  document.getElementById('cy-app')
+  document.getElementById('cy-root')
 );

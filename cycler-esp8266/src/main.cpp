@@ -276,7 +276,7 @@ void loop() {
   }
 
   if (SIMULATING) {
-    if (millis() - sim_millis > 300 + random(500)) {
+    if (millis() - sim_millis > 450 + random(700)) {
       sim_millis = millis();
       sensorInterrupt();
     }
