@@ -47,7 +47,7 @@ export default class Meters extends React.Component {
           <DistanceMeter value={this.state.distance} />
         </section>
         <section>
-          <SpeedMeter value={this.state.speed} />
+          <SpeedMeter value={this.state.speed} averageValue={this.state.distance / (this.state.elapsed / 60 / 60)} />
         </section>
         <section>
           <TimeMeter value={this.state.elapsed} />
