@@ -25,7 +25,7 @@ export default class Meters extends React.Component {
           <DistanceMeter value={this.props.distance} />
         </section>
         <section>
-          <SpeedMeter value={this.props.speed} averageValue={this.props.distance / (this.props.elapsed / 60 / 60)} />
+          <SpeedMeter value={this.props.speed} averageValue={this.props.elapsed ? this.props.distance / (this.props.elapsed / 60 / 60) : 0} />
         </section>
         <section>
           <TimeMeter value={this.props.elapsed} />
