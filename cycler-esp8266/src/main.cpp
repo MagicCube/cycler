@@ -20,11 +20,22 @@ void drawProgress(OLEDDisplay *display, int percentage, String label);
 void drawMain(OLEDDisplay *display, OLEDDisplayUiState *state, int16_t x, int16_t y);
 void drawOverlay(OLEDDisplay *display, OLEDDisplayUiState *state);
 
+
+const int SENSOR_PIN = D3;
+const int SDC_PIN = D1;
+const int SDA_PIN = D2;
+
+// const int SENSOR_PIN = 3;
+// const int SDC_PIN = 2;
+// const int SDA_PIN = 0;
+
+
+
 // General settings
 // OFFLINE = false
 // SIMULATING = false;
 const bool OFFLINE = false;
-const bool SIMULATING = true;
+const bool SIMULATING = false;
 
 // States
 int sim_millis = 0;
@@ -34,7 +45,6 @@ const int UTC_OFFSET = 8;
 TimeClient timeClient(UTC_OFFSET);
 
 // Meter
-const int SENSOR_PIN = D3;
 Meter meter;
 
 // StopWatch
@@ -49,8 +59,7 @@ int upgradingProgress = 0;
 
 // OLED Display Settings
 const int I2C_DISPLAY_ADDRESS = 0x3c;
-const int SDA_PIN = D2;
-const int SDC_PIN = D1;
+
 const int OLED_BRIGHTNESS = 96;
 SH1106Wire display(I2C_DISPLAY_ADDRESS, SDA_PIN, SDC_PIN);
 OLEDDisplayUi ui(&display);
@@ -67,7 +76,7 @@ int numberOfOverlays = 1;
 void setupDisplay() {
   display.init();
   display.clear();
-  display.flipScreenVertically();
+  //display.flipScreenVertically();
   display.display();
 
   display.setTextAlignment(TEXT_ALIGN_CENTER);
@@ -177,7 +186,7 @@ void setupTime() {
 
 
 void drawProgress(OLEDDisplay *display, int percentage, String label) {
-  display->flipScreenVertically();
+  //display->flipScreenVertically();
   display->clear();
   display->setTextAlignment(TEXT_ALIGN_CENTER);
   display->setFont(ArialMT_Plain_10);
@@ -257,7 +266,7 @@ void setup() {
   }
   setupUI();
 
-  display.flipScreenVertically();
+  //display.flipScreenVertically();
   display.setContrast(OLED_BRIGHTNESS);
 
   meter.begin();
