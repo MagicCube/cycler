@@ -1,0 +1,466 @@
+{
+  "trip": {
+    "language": "en-US",
+    "summary": {
+      "max_lon": 118.901932,
+      "max_lat": 32.104885,
+      "time": 3077,
+      "length": 20.404,
+      "min_lat": 32.051510,
+      "min_lon": 118.729500
+    },
+    "locations": [
+      {
+        "lon": 118.729500,
+        "lat": 32.051601,
+        "type": "break"
+      },
+      {
+        "lon": 118.901901,
+        "lat": 32.100201,
+        "type": "break"
+      }
+    ],
+    "units": "kilometers",
+    "legs": [
+      {
+        "shape": "mugc|@uptmaFbBsoAGaGibD{K_kB{Aaq@Og^Mst@_@wIMmd@Ls_A|@oCubByBoq@{A{j@e@c\\{F{qCkF_oBkBy`AaMy{EoHgsCe@mKyCyk@{Jed@_T{j@gbAwsCeEs[sAeEaMux@kFgn@eFubAe@sp@dEco@vD{u@vHmgAlEso@rGcz@L{AF{AxBag@~Iyu@fMexAjWodCrEmi@d@eFVkKzAwb@`BmhArGytBT{Jd@gN|EooC~CafA{Acp@U{KsFevBjAkB|OyVdDm@zG{@lD}@~C{A`DgCpByCvCsFvCqG|@sF\\qHUsF}@uEu@wCaBuDgDwDeEwCqC{AkF}@vCq{@`NqGxAwC`CcGM}JwDqGcGuDoHmA|DitArGyjA`QknFhC}mEjA}TjAsQjByLnC}JpCaH`G{KhRm_@d[anBxA_J`HjAjLco@zKo|@snAsQzFewAu@uOiCqR}Ise@kAcGd@oShGuwAtEy`At@kLpBijAU_s@kBgMyBqRqG}^WyCe@iMvI_fAbAcRNwCtJ{hB?{Km@aHiC_I{FgDsE{@qv@eFqHsFoHyBkjF}qAmqBmj@so@ap@oCkBaN}IkKaH{[sQ}c@kUm`CsmCmo@a{@{}AguB{hFidGk[mi@{@yBwh@qmCmO_TiWq\\aSeOyyAfX_El@ekBzAg@?ye@_Tg^}i@k[ms@{UeYu_@}T_gA{t@eZgEol@{}AcGyVke@cbDcG_]aW{~AwSwuAgD{LuJiVcf@cf@cdAa{@y`A_gA{Kk`@uTuy@aWiv@uZwuAuSww@}Oos@sQqdAiHglAqV_yDkLqp@e@cQrAqg@yGwtBsAwbAxBcZzUqRkPiCcGsPuT}|A_Nc\\aNy|CqWqtFoHy_Bu@oHyBoSkAoJ}c@g}DkBiL{@sF}Uk_B}XooByHoh@uEgXoNuy@oW}|Agd@onCsKgm@oSww@gNed@qWms@sUso@sLkWe^kj@ar@qeAiWm_@_XsZ{VoTyf@ec@kp@ud@j[{`@|OkLjL_HtOwDbQsFt^sFtOiCvNwCvHyBtJuExRmJrU}TbLyLrFmKlJkUxWey@hGcf@nDo]jBud@Lkj@s@ce@xA}_@fEgb@zEc\\jVso@pWqq@xG{KfIgMyBoIyeAwgEkFjA",
+        "summary": {
+          "max_lon": 118.901932,
+          "max_lat": 32.104885,
+          "time": 3077,
+          "length": 20.404,
+          "min_lat": 32.051510,
+          "min_lon": 118.729500
+        },
+        "maneuvers": [
+          {
+            "travel_mode": "bicycle",
+            "begin_shape_index": 0,
+            "length": 0.122,
+            "time": 17,
+            "type": 1,
+            "end_shape_index": 1,
+            "instruction": "Bike east on 湘江路.",
+            "verbal_pre_transition_instruction": "Bike east on 湘江路 for 100 meters.",
+            "travel_type": "road",
+            "street_names": [
+              "湘江路"
+            ]
+          },
+          {
+            "travel_type": "road",
+            "travel_mode": "bicycle",
+            "verbal_pre_transition_instruction": "Turn left onto 漓江路.",
+            "verbal_transition_alert_instruction": "Turn left onto 漓江路.",
+            "length": 0.938,
+            "instruction": "Turn left onto 漓江路.",
+            "end_shape_index": 10,
+            "type": 15,
+            "time": 148,
+            "verbal_post_transition_instruction": "Continue for 900 meters.",
+            "street_names": [
+              "漓江路"
+            ],
+            "begin_shape_index": 1
+          },
+          {
+            "travel_type": "road",
+            "travel_mode": "bicycle",
+            "verbal_pre_transition_instruction": "Turn right onto 草场门大街.",
+            "verbal_transition_alert_instruction": "Turn right onto 草场门大街.",
+            "length": 0.830,
+            "instruction": "Turn right onto 草场门大街.",
+            "end_shape_index": 17,
+            "type": 10,
+            "time": 141,
+            "verbal_post_transition_instruction": "Continue for 800 meters.",
+            "street_names": [
+              "草场门大街"
+            ],
+            "begin_shape_index": 10
+          },
+          {
+            "travel_type": "road",
+            "verbal_pre_transition_instruction": "Continue on 草场门大桥 for 600 meters.",
+            "verbal_transition_alert_instruction": "Continue on 草场门大桥.",
+            "length": 0.559,
+            "instruction": "Continue on 草场门大桥.",
+            "end_shape_index": 19,
+            "type": 8,
+            "time": 68,
+            "street_names": [
+              "草场门大桥"
+            ],
+            "begin_shape_index": 17,
+            "travel_mode": "bicycle"
+          },
+          {
+            "travel_type": "road",
+            "verbal_pre_transition_instruction": "Continue on 草场门大街 for a half kilometer.",
+            "verbal_transition_alert_instruction": "Continue on 草场门大街.",
+            "length": 0.478,
+            "instruction": "Continue on 草场门大街.",
+            "end_shape_index": 24,
+            "type": 8,
+            "time": 70,
+            "street_names": [
+              "草场门大街"
+            ],
+            "begin_shape_index": 19,
+            "travel_mode": "bicycle"
+          },
+          {
+            "travel_type": "road",
+            "travel_mode": "bicycle",
+            "verbal_pre_transition_instruction": "Bear right onto 北京西路.",
+            "verbal_transition_alert_instruction": "Bear right onto 北京西路.",
+            "length": 0.829,
+            "instruction": "Bear right onto 北京西路.",
+            "end_shape_index": 35,
+            "type": 9,
+            "time": 145,
+            "verbal_post_transition_instruction": "Continue for 800 meters.",
+            "street_names": [
+              "北京西路"
+            ],
+            "begin_shape_index": 24
+          },
+          {
+            "travel_type": "road",
+            "verbal_pre_transition_instruction": "Continue for less than 10 meters. Then Continue on 北京西路.",
+            "verbal_transition_alert_instruction": "Continue.",
+            "length": 0.009,
+            "instruction": "Continue.",
+            "end_shape_index": 37,
+            "type": 8,
+            "time": 1,
+            "verbal_multi_cue": true,
+            "begin_shape_index": 35,
+            "travel_mode": "bicycle"
+          },
+          {
+            "travel_type": "road",
+            "verbal_pre_transition_instruction": "Continue on 北京西路 for 1.6 kilometers.",
+            "verbal_transition_alert_instruction": "Continue on 北京西路.",
+            "length": 1.622,
+            "instruction": "Continue on 北京西路.",
+            "end_shape_index": 56,
+            "type": 8,
+            "time": 254,
+            "street_names": [
+              "北京西路"
+            ],
+            "begin_shape_index": 37,
+            "travel_mode": "bicycle"
+          },
+          {
+            "travel_type": "road",
+            "travel_mode": "bicycle",
+            "verbal_pre_transition_instruction": "Enter the roundabout and take the 2nd exit.",
+            "verbal_transition_alert_instruction": "Enter the roundabout and take the 2nd exit.",
+            "length": 0.212,
+            "instruction": "Enter the roundabout and take the 2nd exit.",
+            "end_shape_index": 74,
+            "type": 26,
+            "time": 28,
+            "street_names": [
+              "鼓楼公园",
+              "Drum Tower Park"
+            ],
+            "begin_shape_index": 56,
+            "roundabout_exit_count": 2
+          },
+          {
+            "travel_type": "road",
+            "verbal_pre_transition_instruction": "Exit the roundabout onto 北京西路.",
+            "verbal_post_transition_instruction": "Continue for 90 meters.",
+            "instruction": "Exit the roundabout onto 北京西路.",
+            "end_shape_index": 75,
+            "type": 27,
+            "time": 6,
+            "street_names": [
+              "北京西路"
+            ],
+            "length": 0.092,
+            "begin_shape_index": 74,
+            "travel_mode": "bicycle"
+          },
+          {
+            "travel_type": "road",
+            "travel_mode": "bicycle",
+            "verbal_pre_transition_instruction": "Enter the roundabout and take the 2nd exit.",
+            "verbal_transition_alert_instruction": "Enter the roundabout and take the 2nd exit.",
+            "length": 0.122,
+            "instruction": "Enter the roundabout and take the 2nd exit.",
+            "end_shape_index": 82,
+            "type": 26,
+            "time": 19,
+            "street_names": [
+              "鼓楼广场",
+              "Drum Tower Square"
+            ],
+            "begin_shape_index": 75,
+            "roundabout_exit_count": 2
+          },
+          {
+            "travel_type": "road",
+            "verbal_pre_transition_instruction": "Exit the roundabout onto 北京东路, East Beijing Road.",
+            "verbal_post_transition_instruction": "Continue for 1.3 kilometers.",
+            "instruction": "Exit the roundabout onto 北京东路\/East Beijing Road.",
+            "end_shape_index": 94,
+            "type": 27,
+            "time": 196,
+            "street_names": [
+              "北京东路",
+              "East Beijing Road"
+            ],
+            "length": 1.299,
+            "begin_shape_index": 82,
+            "travel_mode": "bicycle"
+          },
+          {
+            "travel_type": "road",
+            "travel_mode": "bicycle",
+            "begin_shape_index": 94,
+            "time": 66,
+            "type": 8,
+            "end_shape_index": 99,
+            "instruction": "Continue.",
+            "length": 0.351,
+            "verbal_transition_alert_instruction": "Continue.",
+            "verbal_pre_transition_instruction": "Continue for 400 meters."
+          },
+          {
+            "travel_type": "road",
+            "travel_mode": "bicycle",
+            "verbal_pre_transition_instruction": "Turn right onto 北京东路.",
+            "verbal_transition_alert_instruction": "Turn right onto 北京东路.",
+            "length": 0.765,
+            "instruction": "Turn right onto 北京东路.",
+            "end_shape_index": 111,
+            "type": 10,
+            "time": 103,
+            "verbal_post_transition_instruction": "Continue for 800 meters.",
+            "street_names": [
+              "北京东路"
+            ],
+            "begin_shape_index": 99
+          },
+          {
+            "travel_type": "road",
+            "verbal_pre_transition_instruction": "Continue on 龙蟠路 for 1.4 kilometers.",
+            "verbal_transition_alert_instruction": "Continue on 龙蟠路.",
+            "length": 1.399,
+            "instruction": "Continue on 龙蟠路.",
+            "end_shape_index": 130,
+            "type": 8,
+            "time": 215,
+            "street_names": [
+              "龙蟠路"
+            ],
+            "begin_shape_index": 111,
+            "travel_mode": "bicycle"
+          },
+          {
+            "travel_type": "road",
+            "verbal_pre_transition_instruction": "Continue on 板仓街 for 1.5 kilometers.",
+            "verbal_transition_alert_instruction": "Continue on 板仓街.",
+            "length": 1.542,
+            "instruction": "Continue on 板仓街.",
+            "end_shape_index": 140,
+            "type": 8,
+            "time": 234,
+            "street_names": [
+              "板仓街"
+            ],
+            "begin_shape_index": 130,
+            "travel_mode": "bicycle"
+          },
+          {
+            "travel_type": "road",
+            "travel_mode": "bicycle",
+            "verbal_pre_transition_instruction": "Bear right onto 蒋王庙街.",
+            "verbal_transition_alert_instruction": "Bear right onto 蒋王庙街.",
+            "length": 0.383,
+            "instruction": "Bear right onto 蒋王庙街.",
+            "end_shape_index": 145,
+            "type": 9,
+            "time": 66,
+            "verbal_post_transition_instruction": "Continue for 400 meters.",
+            "street_names": [
+              "蒋王庙街"
+            ],
+            "begin_shape_index": 140
+          },
+          {
+            "travel_type": "road",
+            "travel_mode": "bicycle",
+            "verbal_pre_transition_instruction": "Turn left onto 樱花路.",
+            "verbal_transition_alert_instruction": "Turn left onto 樱花路.",
+            "length": 0.952,
+            "instruction": "Turn left onto 樱花路.",
+            "end_shape_index": 156,
+            "type": 15,
+            "time": 132,
+            "verbal_post_transition_instruction": "Continue for 1 kilometer.",
+            "street_names": [
+              "樱花路"
+            ],
+            "begin_shape_index": 145
+          },
+          {
+            "travel_type": "road",
+            "travel_mode": "bicycle",
+            "verbal_pre_transition_instruction": "Turn right onto 蒋王庙街.",
+            "verbal_transition_alert_instruction": "Turn right onto 蒋王庙街.",
+            "length": 2.784,
+            "instruction": "Turn right onto 蒋王庙街.",
+            "end_shape_index": 181,
+            "type": 10,
+            "time": 412,
+            "verbal_post_transition_instruction": "Continue for 2.8 kilometers.",
+            "street_names": [
+              "蒋王庙街"
+            ],
+            "begin_shape_index": 156
+          },
+          {
+            "travel_type": "road",
+            "travel_mode": "bicycle",
+            "verbal_pre_transition_instruction": "Bear right. Then Turn right onto 环陵路.",
+            "verbal_transition_alert_instruction": "Bear right.",
+            "length": 0.042,
+            "instruction": "Bear right.",
+            "end_shape_index": 182,
+            "type": 9,
+            "time": 4,
+            "verbal_multi_cue": true,
+            "verbal_post_transition_instruction": "Continue for 40 meters.",
+            "begin_shape_index": 181
+          },
+          {
+            "travel_type": "road",
+            "travel_mode": "bicycle",
+            "verbal_multi_cue": true,
+            "verbal_pre_transition_instruction": "Turn right onto 环陵路. Then Turn left.",
+            "verbal_transition_alert_instruction": "Turn right onto 环陵路.",
+            "length": 0.050,
+            "instruction": "Turn right onto 环陵路.",
+            "end_shape_index": 183,
+            "type": 10,
+            "time": 5,
+            "verbal_post_transition_instruction": "Continue for 50 meters.",
+            "street_names": [
+              "环陵路"
+            ],
+            "begin_shape_index": 182
+          },
+          {
+            "travel_type": "road",
+            "verbal_pre_transition_instruction": "Turn left.",
+            "verbal_transition_alert_instruction": "Turn left.",
+            "length": 0.260,
+            "instruction": "Turn left.",
+            "end_shape_index": 187,
+            "type": 15,
+            "time": 42,
+            "verbal_post_transition_instruction": "Continue for 300 meters.",
+            "begin_shape_index": 183,
+            "travel_mode": "bicycle"
+          },
+          {
+            "travel_type": "road",
+            "travel_mode": "bicycle",
+            "verbal_pre_transition_instruction": "Bear right onto G3 12, 玄武大道.",
+            "verbal_transition_alert_instruction": "Bear right onto G3 12.",
+            "length": 2.725,
+            "instruction": "Bear right onto G312\/玄武大道\/Xuanwu Avenue.",
+            "end_shape_index": 211,
+            "type": 9,
+            "time": 395,
+            "verbal_post_transition_instruction": "Continue for 2.7 kilometers.",
+            "street_names": [
+              "G312",
+              "玄武大道",
+              "Xuanwu Avenue"
+            ],
+            "begin_shape_index": 187
+          },
+          {
+            "travel_type": "road",
+            "travel_mode": "bicycle",
+            "begin_shape_index": 211,
+            "time": 64,
+            "type": 8,
+            "end_shape_index": 216,
+            "instruction": "Continue.",
+            "length": 0.374,
+            "verbal_transition_alert_instruction": "Continue.",
+            "verbal_pre_transition_instruction": "Continue for 400 meters."
+          },
+          {
+            "travel_type": "road",
+            "travel_mode": "bicycle",
+            "verbal_pre_transition_instruction": "Turn right onto 仙隐北路.",
+            "verbal_transition_alert_instruction": "Turn right onto 仙隐北路.",
+            "length": 1.278,
+            "instruction": "Turn right onto 仙隐北路.",
+            "end_shape_index": 243,
+            "type": 10,
+            "time": 185,
+            "verbal_post_transition_instruction": "Continue for 1.3 kilometers.",
+            "street_names": [
+              "仙隐北路"
+            ],
+            "begin_shape_index": 216
+          },
+          {
+            "travel_type": "road",
+            "travel_mode": "bicycle",
+            "verbal_pre_transition_instruction": "Turn left onto 文苑路.",
+            "verbal_transition_alert_instruction": "Turn left onto 文苑路.",
+            "length": 0.373,
+            "instruction": "Turn left onto 文苑路.",
+            "end_shape_index": 246,
+            "type": 15,
+            "time": 57,
+            "verbal_post_transition_instruction": "Continue for 400 meters.",
+            "street_names": [
+              "文苑路"
+            ],
+            "begin_shape_index": 243
+          },
+          {
+            "travel_type": "road",
+            "travel_mode": "bicycle",
+            "verbal_pre_transition_instruction": "Turn left. Then You will arrive at your destination.",
+            "verbal_transition_alert_instruction": "Turn left.",
+            "length": 0.014,
+            "instruction": "Turn left.",
+            "end_shape_index": 247,
+            "type": 15,
+            "time": 4,
+            "verbal_multi_cue": true,
+            "verbal_post_transition_instruction": "Continue for 10 meters.",
+            "begin_shape_index": 246
+          },
+          {
+            "travel_type": "road",
+            "travel_mode": "bicycle",
+            "begin_shape_index": 247,
+            "time": 0,
+            "type": 4,
+            "end_shape_index": 247,
+            "instruction": "You have arrived at your destination.",
+            "length": 0.000,
+            "verbal_transition_alert_instruction": "You will arrive at your destination.",
+            "verbal_pre_transition_instruction": "You have arrived at your destination."
+          }
+        ]
+      }
+    ],
+    "status_message": "Found route between points",
+    "status": 0
+  }
+}
