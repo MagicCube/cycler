@@ -7,6 +7,8 @@ import 'redux';
 import 'redux-actions';
 import 'redux-promise';
 
+import '@mapbox/polyline';
+import './smooth';
 
 import 'normalize.css';
 import 'leaflet/dist/leaflet.css';
