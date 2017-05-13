@@ -8,6 +8,7 @@
 using namespace std;
 
 
+const int SPEED_FACTOR = 3;   // Aapproximately 22 km/h
 const int CHECK_INTERVAL = 2500;
 const int RECORD_INTERVAL = 5000;
 const int MAX_RECORD_COUNT = 30 * 60 / 5;

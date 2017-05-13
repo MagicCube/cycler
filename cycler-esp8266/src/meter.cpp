@@ -51,7 +51,7 @@ float Meter::getTantaneousSpeed() {
 }
 
 float Meter::getDistance() {
-  return (float)this->_cycles * 4 / 1000;
+  return (float)this->_cycles * SPEED_FACTOR / 1000;
 }
 
 String Meter::getFormatedDistance() {
