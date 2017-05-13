@@ -56,16 +56,15 @@ export default class Map extends React.Component {
       ];
       this.steps.push(step);
     }
-    this.map.addLayer(L.polyline(points, { color: 'silver' }));
+    this.map.addLayer(L.polyline(points, { color: 'white', opacity: 0.5 }));
   }
 
   initMarker() {
     this.marker = L.circleMarker(ORIGIN, {
       radius: 8,
       color: 'red',
-      stroke: 1,
       fillColor: 'red',
-      fillOpacity: 0.9
+      fillOpacity: 0.8
     });
     this.map.addLayer(this.marker);
   }
