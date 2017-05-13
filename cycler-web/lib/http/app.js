@@ -21,9 +21,8 @@ if (devMode) {
   const webpackConfig = require('../../webpack.config');
   const compiler = webpack(webpackConfig);
   app.use(webpackMiddleware(compiler, webpackConfig.devServer));
-} else {
-  app.use(express.static('public'));
 }
+app.use(express.static('public'));
 
 
 module.exports = app;
